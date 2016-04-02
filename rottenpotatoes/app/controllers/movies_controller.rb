@@ -64,4 +64,12 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
+  def director
+    @movie = Movie.find params[:id]
+    if @movie.director.blank?
+      redirect_to root_path
+    else 
+      @movies = @movie.find_with_same_director
+    end
+  end
 end
